@@ -1,7 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
-import Hello from './Home';
-import Timeline from './Timeline';
+import Picture from './picture';
+import Timeline from './timeline';
+import Body from './Body';
 import Statictics from './statictics';
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
         </a> */}
         <Timeline />
       </header>
-      <Hello />
+      <Body />
+      <Picture />
       <Statictics />
     </div>
   );
