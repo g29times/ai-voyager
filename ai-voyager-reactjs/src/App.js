@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import Hello from './Hello';
+import Hello from './Home';
 import Timeline from './Timeline';
 import Statictics from './statictics';
 

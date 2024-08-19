@@ -1,3 +1,4 @@
+// 远程后端服务调用 使用模型：Abab6.5chat
 import React, { useState } from 'react';
 
 // 1 状态管理：
@@ -40,64 +41,78 @@ function Hello() {
         const randomName = randomNames[Math.floor(Math.random() * randomNames.length)];
         setName(randomName); // 更新状态
     };
-    // 后端交互 通过 LastName 获取昵称的建议 展示在页面
+
+    const { GoogleGenerativeAI } = require("@google/generative-ai");
+    const genAI = new GoogleGenerativeAI("AIzaSyCMxfYl6Vo4EkatPNNEcorlcAtG4tBHccY");
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+    async function run(lastName) {
+        const prompt = `how about ${lastName}`;
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        console.log(text);
+        setNickName(text);
+    }
+    // 远程后端服务调用 使用模型：Abab6.5chat 通过 LastName 建议昵称
     const getNickname = async (lastName) => {
       try {
-          const response = await fetch('https://api.dify.ai/v1/chat-messages', {
-              method: 'POST',
-              headers: {
-                  'accept': 'application/json',
-                  'Authorization': 'Bearer app-q5XmMZR1Dzp7N1vnlcyt8edM',
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                  inputs: {},
-                  query: `how about ${lastName}`,
-                  response_mode: "streaming",
-                  user: 1
-              })
-          });
+        run(lastName);
+        // const response = await fetch('https://api.dify.ai/v1/chat-messages', {
+        //     method: 'POST',
+        //     headers: {
+        //         'accept': 'application/json',
+        //         'Authorization': 'Bearer app-q5XmMZR1Dzp7N1vnlcyt8edM',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         inputs: {},
+        //         query: `how about ${lastName}`,
+        //         response_mode: "streaming",
+        //         user: 1
+        //     })
+        // });
 
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
 
-        //   const data = await response.json();
-        //   const nickname = data.textResponse; // 后端返回的主体在 textResponse 字段中
-        //   setNickName(nickname); // 更新状态
-        // 流式处理响应数据
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let result = '';
-        let lastThought = '';
+        // //   const data = await response.json();
+        // //   const nickname = data.textResponse; // 后端返回的主体在 textResponse 字段中
+        // //   setNickName(nickname); // 更新状态
+        // // 流式处理响应数据
+        // const reader = response.body.getReader();
+        // const decoder = new TextDecoder();
+        // let result = '';
+        // let lastThought = '';
 
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            result += decoder.decode(value, { stream: true });
+        // while (true) {
+        //     const { done, value } = await reader.read();
+        //     if (done) break;
+        //     result += decoder.decode(value, { stream: true });
 
-            // 解析每个 data 块 并提取最后一个 agent_thought 事件的内容
-            const lines = result.split('\n');
-            for (const line of lines) {
-                if (line.startsWith('data: ')) {
-                    const jsonStr = line.substring(6);
-                    try {
-                        const data = JSON.parse(jsonStr);
-                        if (data.event === 'agent_thought') {
-                            lastThought = data.thought;
-                        }
-                    } catch (e) {
-                        console.error('Error parsing JSON:', e);
-                    }
-                }
-            }
-            setNickName(lastThought); // 更新 nickname 状态
-        }
+        //     // 解析每个 data 块 并提取最后一个 agent_thought 事件的内容
+        //     const lines = result.split('\n');
+        //     for (const line of lines) {
+        //         if (line.startsWith('data: ')) {
+        //             const jsonStr = line.substring(6);
+        //             try {
+        //                 const data = JSON.parse(jsonStr);
+        //                 if (data.event === 'agent_thought') {
+        //                     lastThought = data.thought;
+        //                 }
+        //             } catch (e) {
+        //                 console.error('Error parsing JSON:', e);
+        //             }
+        //         }
+        //     }
+        //     setNickName(lastThought); // 更新 nickname 状态
+        // }
       } catch (error) {
           console.error('Error fetching random name:', error);
       }
     };
-    // 后端交互 关于昵称 nickname 的进一步建议 展示在页面
+
+    // 远程后端服务调用 使用模型：Abab6.5chat 对用户所选昵称 nickname 的交流
     const setNickname = async (nickname) => {
       try {
           const response = await fetch('https://api.dify.ai/v1/chat-messages', {
