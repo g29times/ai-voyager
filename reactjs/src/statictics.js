@@ -11,7 +11,6 @@ const Statictics = () => {
   return (
     <div>
       Statictics1
-      {data}
       {/* <ScatterChart data={data} /> */}
     </div>
   );
