@@ -42,6 +42,7 @@ function Hello() {
         setName(randomName); // 更新状态
     };
 
+    // 远程后端服务调用 使用模型：Gemini
     const { GoogleGenerativeAI } = require("@google/generative-ai");
     const genAI = new GoogleGenerativeAI("AIzaSyCMxfYl6Vo4EkatPNNEcorlcAtG4tBHccY");
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
