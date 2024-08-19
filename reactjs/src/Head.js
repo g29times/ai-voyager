@@ -1,7 +1,8 @@
 // src/Timeline.js
 import React, { useState, useEffect } from 'react';
+import FadeOutDiv from './headTitle';
 
-// 图片数组，包含所有要轮播的图片URL
+// 测试用 图片数组，包含所有要轮播的图片URL
 const images = [
     'https://fal.media/files/monkey/o7SiF9EGP9Ho6mGDan0or.png',
     'https://fal.media/files/tiger/6js9b2-cK9qQ2uYrx5Wn6.png',
@@ -18,7 +19,6 @@ function changeBackground() {
     // 更新当前图片索引，如果达到数组末尾则回到开始
     currentImageIndex = (currentImageIndex + 1) % images.length;
 }
-
 // 定时器，每10秒更改一次背景图片
 // setInterval(changeBackground, 10000);
 
@@ -37,14 +37,19 @@ const Timeline = () => {
 
     return (
         <div className="box" id="dynamic-background">
-            <h1>Voyager</h1>
-            <ul className="event_year">
-                {years.map((year, index) => (
-                    <li key={index} className={index === 0 ? 'current' : ''}>
-                        <label>{year}</label>
-                    </li>
-                ))}
-            </ul>
+            {/* <div id="fadeDiv" class="fade-out">
+                <h1>Voyager</h1>
+            </div> */}
+            <FadeOutDiv />
+            <div>
+                <ul className="event_year">
+                    {years.map((year, index) => (
+                        <li key={index} className={index === 0 ? 'current' : ''}>
+                            <label>{year}</label>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };

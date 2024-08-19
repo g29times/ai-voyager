@@ -37,7 +37,7 @@ function Picture() {
     return (
         <div class="background-div">
             <div>
-                Draw a picture you like <input type="text" 
+                Draw a picture of <input type="text" 
                 onChange={onDraw} 
                 placeholder="a beautiful garden" />
                 <button onClick={() => falTextToImage(drawPrompt)}>Draw</button>

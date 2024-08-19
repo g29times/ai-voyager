@@ -66,4 +66,21 @@
 .event_list li p { width:680px;margin-left:24px;display:inline-block;padding-left:10px;background:url('../public/img/jian.png') -21px 0 no-repeat;line-height:25px;_float:left; }
 .event_list li p span { width:650px;text-align:left;border-bottom:2px solid #DDD;padding:10px 15px;background:#FFF;margin:0; }
 
-/* Picture部分 */
+/* Title部分 */
+/* 定义动画效果 */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* 给div添加类，用于应用动画 */
+.fade-out {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+  cursor: pointer; /* 改变鼠标指针形状，表示可点击 */
+}
+
+/* 当div被点击后，添加这个类来触发动画 */
+.fade-out.clicked {
+  animation: fadeOut 0.5s ease-out forwards;
+}
