@@ -146,20 +146,7 @@ function Body() {
                 />
                 {/* <button onClick={() => getNickname(name)}>Nickname Idea</button> */}
             </div>
-            <div>
-                Hi There! {nickname}
-            </div>
             
-            <div>
-                Your Nickname: 
-                <input type="text" 
-                onChange={onNicknameChange} 
-                placeholder="Enter your nickname" />
-                <button onClick={() => setNickname(nickname)}>Get on board</button>
-            </div>
-            <div>
-                {onboard}
-            </div>
         </div>
     );
 }
