@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/日食.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,7 +24,32 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Voyager</title>
+    <style>
+        /* 移动的打字机 */
+        @keyframes typewriter {
+            0% { width: 0; border-color: transparent; }
+            50% { width: 100%; border-color: #ebcd09; } /* 可根据需要调整百分比 */
+            100% { width: 0; border-color: transparent; }
+        }
+        /* 闪烁光标 */
+        @keyframes blinkCursor {
+          0%, 50% { border-right-color: transparent; }
+        }
+
+        .typewriter-effect {
+            border-right: 5px solid #000; /* 模拟光标 */
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typewriter 15s steps(60) 1; /* 调整动画时间 */
+        }
+
+        .typewriter-effect .cursor {
+            animation: blinkCursor 1s step-end 1;
+            border-right: 5px solid #000;
+            /* margin-left: 5px; */
+        }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +64,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    
   </body>
 </html>

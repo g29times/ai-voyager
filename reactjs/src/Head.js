@@ -42,13 +42,13 @@ const Timeline = () => {
             </div> */}
             <FadeOutDiv />
             <div>
-                <ul className="event_year">
+                {/* TODO 时间轴 <ul className="event_year">
                     {years.map((year, index) => (
                         <li key={index} className={index === 0 ? 'current' : ''}>
                             <label>{year}</label>
                         </li>
                     ))}
-                </ul>
+                </ul> */}
             </div>
         </div>
     );

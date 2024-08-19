@@ -18,6 +18,10 @@ function App() {
                 </a> */}
                 <Timeline />
             </header>
+            <div class="typewriter-effect">
+              <span class="cursor"></span>
+              Time flys like arrow, sand flows like water.
+            </div>
             <Body />
             <Picture />
             <Statictics />
